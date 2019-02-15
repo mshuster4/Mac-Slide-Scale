@@ -4,21 +4,34 @@ var output = document.getElementById("priceNumber");
 output.innerHTML = slider.value;
 
 slider.oninput = (function() {
-  priceNumber = this.value;
+
+  var priceNumber = this.value;
+  var step = this.step; 
+
+
+  console.log("priceNumber: " + priceNumber);
+  
   output.innerHTML = priceNumber;
+
   var com = parseInt($(".commissions").text());
-  var fee = parseInt($(".commissions").text());
-  updateCommissions(priceNumber, com);
+  var fee = parseInt($(".service-fee").text());
+
+  updateCommissions(priceNumber,com, step);
   updateServiceFee(priceNumber, fee);
-  updateYouSave(priceNumber, fee);
+
 });
 
 
-function updateCommissions(priceNumber, com) {
-        var com = parseInt($(".commissions").text());
-        var newNum = com + 750
-        $(".commissions").text(newNum
-};
+function updateCommissions(priceNumber, com, step) {
+
+    var newNum = 0
+
+    newNum = com + 750;
+
+    $(".commissions").text(newNum);
+    
+
+}
 
 function updateServiceFee(priceNumber, fee) {
     if (priceNumber <= 750000) {
@@ -31,13 +44,6 @@ function updateServiceFee(priceNumber, fee) {
     }
     else if (priceNumber > 1300000 && priceNumber < 3000000) {
         fee = 9999
-        $(".service-fee").text(fee)
+        $(".service-fee").text(fee); 
     }
-}
-
-function updateYouSave(priceNumber, fee) {
-    if (priceNumber > 1500000 && fee == 3999) {
-        
-    }
-
 }
